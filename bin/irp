@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+trap 'echo "$0: line ${LINENO}: exiting because of error";exit 1' ERR
+
+
+while getopts "a:h?" options; do case $options in
+  a) a="$OPTARG" ;;
+  h|?) help; exit ;;
+esac; done; shift $((OPTIND - 1))
+
+
+: ${a:="default for var a"}
+
+while true; do
+read -n 1 -s -r char_input
+  printf "%x\n" "'${char_input}"
+done
+
